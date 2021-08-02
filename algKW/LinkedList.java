@@ -4,14 +4,14 @@ final class LinkedList{
     
     private LinkedList first;
     private LinkedList next;
-    private String Item;
+    private int Item;
     public  LinkedList(){
         
-        this.Item="";
+        this.Item=0;
         this.first=null;            
     
     }
-    public void addFirst(String item,LinkedList list){
+    public void addFirst(int item,LinkedList list){
 
         LinkedList n=new LinkedList();
         n.next=list.next;
@@ -34,7 +34,7 @@ final class LinkedList{
         node=null;
 
         }
-    public void addEnd(String item,LinkedList list){
+    public void addEnd(int item,LinkedList list){
 
         LinkedList node;
         node=list.next;
@@ -48,18 +48,18 @@ final class LinkedList{
         node.next=n;
 
         }
-     public void removeItem(String value,LinkedList list){
+     public void removeItem(int value,LinkedList list){
 
             LinkedList node=list.next;
             LinkedList nr=null;
-            if(node.Item.equals(value)){
+            if(node.Item==(value)){
                 list.next=node.next;
 
             }
             else{
             while(node!=null){
 
-                if(node.Item.equals(value)){
+                if(node.Item==(value)){
                     nr.next=node.next;
                     
                         }
@@ -73,4 +73,3 @@ final class LinkedList{
 
     }
 
-    
