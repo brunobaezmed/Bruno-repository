@@ -13,21 +13,21 @@ public class tmain1{
         LinkedList list=new LinkedList();
     
 
-        String a="";
+        int a=0;
         
         for(int r=0;r<5;r++){
-            a=rng.getAlgorithm();
+            a=rng.nextInt(22);
             list.addFirst(a, list);
         }   
         list.printList(list);
         
         cout.println();
 
-        //list.addEnd(33,list);
+        list.addEnd(561,list);
         list.printList(list);
         
         cout.println();
-        //list.removeItem(33, list);
+        list.removeItem(561, list);
         list.printList(list);
 
     }
