@@ -41,8 +41,9 @@ public class TOrderedmain {
 		
 		cout.println();
 		
-		Table.deleteMax();
-		cout.println(Table.max()+Table.get(Table.max()));
+		cout.println(Table.floor(97));
+		
+
 		
 		
 		cin.close();

@@ -133,7 +133,7 @@ public class OrderedSymbolT <Key extends Comparable<Key>,Value> implements Symbo
 		
 		for(int u=0;u<this.size;u++) {
 			
-			if(key.compareTo(this.key[u])>=0)
+			if(key.compareTo(this.key[u])<=0&&this.key[u].compareTo(f)<=0)
 					f=this.key[u];
 			}
 			return f;
@@ -143,7 +143,7 @@ public class OrderedSymbolT <Key extends Comparable<Key>,Value> implements Symbo
 		Key f=this.key[0];
 		for(int t=0;t<this.size;t++) {
 			
-			if(key.compareTo(this.key[t])<=0)
+			if(key.compareTo(this.key[t])>=0)
 				f=this.key[t];
 			}
 			return f;
