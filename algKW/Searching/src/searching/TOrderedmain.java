@@ -41,7 +41,7 @@ public class TOrderedmain {
 		
 		cout.println();
 		
-		cout.println(Table.floor(97));
+		cout.println(Table.floor(98));
 		
 
 		
