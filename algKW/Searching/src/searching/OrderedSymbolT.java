@@ -2,6 +2,8 @@ package searching;
 import java.io.PrintStream;
 import java.util.Arrays;
 import java.util.Iterator;
+
+
 public class OrderedSymbolT <Key extends Comparable<Key>,Value> implements SymbolTable<Key,Value>{
 	
 	final PrintStream  cout=new PrintStream(System.out);
@@ -130,22 +132,36 @@ public class OrderedSymbolT <Key extends Comparable<Key>,Value> implements Symbo
 		}
 	public Key floor(Key key) {
 		Key f=this.key[0];
+				
+		Key []i=this.key;
+		i=Arrays.copyOf(this.key, this.key.length);
+		
+		Arrays.sort(this.key);
 		
 		for(int u=0;u<this.size;u++) {
 			
-			if(key.compareTo(this.key[u])<=0&&this.key[u].compareTo(f)<=0)
+			if(key.compareTo(this.key[u])>=0)
 					f=this.key[u];
 			}
+			this.key=Arrays.copyOf(i,this.key.length);
 			return f;
 		}
 	public Key ceiling(Key key) {
 		
+
+		Key []i=this.key;
+		i=Arrays.copyOf(this.key, this.key.length);
+		
+		Arrays.sort(this.key);
+		
+
 		Key f=this.key[0];
 		for(int t=0;t<this.size;t++) {
 			
-			if(key.compareTo(this.key[t])>=0)
+			if(key.compareTo(this.key[t])<=0)
 				f=this.key[t];
 			}
+			this.key=Arrays.copyOf(i,this.key.length);
 			return f;
 		}
 	public int rank(Key key) {
