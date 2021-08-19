@@ -12,7 +12,7 @@ public class TOrderedmain {
 	static PrintStream cout = new PrintStream(System.out);
 
 	public static void main(String[] args)throws FileNotFoundException {
-	    File f =new File("/home/bruno/Documents/java/eclipse/Searching/src/searching/FileSymbol");
+	    File f =new File("C:/Users/Casa/Documents/Bruno/java/searching/FileSymbol");
 	    Scanner file=new Scanner(f);
 	    int p=0;
 	    while(file.hasNextLine()) {
@@ -36,14 +36,15 @@ public class TOrderedmain {
 			
 		}
 		
-		cout.print("size:"+Table.size()+"\n");
+		cout.print("\n");
 		Table.keys();
 		
 		cout.println();
 		
 		Table.deleteMax();
+		cout.println(Table.max()+Table.get(Table.max()));
 		
-		cout.print(Table.max());
+		
 		cin.close();
 		file1.close();
 	}

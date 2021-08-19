@@ -84,30 +84,48 @@ public class OrderedSymbolT <Key extends Comparable<Key>,Value> implements Symbo
 	
 	public Key min() {
 		Key min;
-		int y=0;
+	
+		int y=0,h=0;
+		boolean c=true;
 		Key []i=this.key;
-		
+		i=Arrays.copyOf(this.key, key.length);
+
 		Arrays.sort(key);
 		
-		while(this.value[y]==null)
-			y++;
+		while(c){
+		 
+		for(h=0;i[h].compareTo(this.key[y])!=0;)
+		h++;
+		if(value[h]==null)y++;
+		else c=false;	
 			
+		}
 		min=this.key[y];
-		this.key=i;
-		
+		this.key=Arrays.copyOf(i,i.length);
 		return min;
 		}
 	public Key max() {
 		Key max;
+		int h=0,y=this.size-1;
+		boolean c=true;
+		
 		Key []i=this.key;
-		int y=this.size-1;
+		
+		i=Arrays.copyOf(this.key, key.length);
+	
 		
 		Arrays.sort(key);
-		while(this.value[y]==null)
-			y--;
+		while(c){
+		 
+			for(h=0;i[h].compareTo(this.key[y])!=0;)
+			h++;
+			if(value[h]==null)y--;
+			else c=false;	
+				
+			}
 		max=this.key[y];
 		
-		this.key=i;
+		this.key=Arrays.copyOf(i,i.length);
 		return max;
 		}
 	public Key floor(Key key) {
@@ -167,9 +185,7 @@ public class OrderedSymbolT <Key extends Comparable<Key>,Value> implements Symbo
 		else {
 			return rank(high)-rank(low);
 			}
-		
-		
-		
+
 		
 		}
 		
@@ -180,6 +196,7 @@ public class OrderedSymbolT <Key extends Comparable<Key>,Value> implements Symbo
 	public Iterable<Key>keys(Key low,Key high){
 		
 		Key []i=this.key;
+		i=Arrays.copyOf(this.key, key.length);
 		int z=this.size;
 		Arrays.sort(key);
 		
@@ -193,7 +210,7 @@ public class OrderedSymbolT <Key extends Comparable<Key>,Value> implements Symbo
 			
 			}	
 		this.size=z;
-		this.key=i;
+		this.key=Arrays.copyOf(i,i.length);
 		return null;
 	}
 	public Iterator<Key> iterator(){
