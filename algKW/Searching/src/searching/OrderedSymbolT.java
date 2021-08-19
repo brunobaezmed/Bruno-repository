@@ -4,11 +4,12 @@ import java.util.Arrays;
 import java.util.Iterator;
 public class OrderedSymbolT <Key extends Comparable<Key>,Value> implements SymbolTable<Key,Value>{
 	
-	PrintStream  cout=new PrintStream(System.out);
+	final PrintStream  cout=new PrintStream(System.out);
 	private Key[] key;
 	private Value[] value;
 	private int size;
 	private int curr;
+	private int n;
 	
 	public OrderedSymbolT(Key[] b,Value[] v){
 		
@@ -16,6 +17,7 @@ public class OrderedSymbolT <Key extends Comparable<Key>,Value> implements Symbo
 		value=v;
 		this.size=key.length;
 		this.curr=0;
+		this.n=this.size;
 			}
 	public void put(Key key,Value value) {
 			
@@ -36,6 +38,7 @@ public class OrderedSymbolT <Key extends Comparable<Key>,Value> implements Symbo
 				this.size++;
 				this.key[this.size - 1] = key;
 				this.value[this.size - 1] = value;
+				this.n=this.size;
 					}
 
 			
@@ -54,15 +57,14 @@ public class OrderedSymbolT <Key extends Comparable<Key>,Value> implements Symbo
 		}
 	public void delete(Key key) {
 		int r=0;
-		
 		while(r<this.size) {
 			if(key.compareTo(this.key[r])==0) {
-				this.key[r]=null;
+				this.value[r]=null;
 			}
 			r++;
 			
 			}
-		this.size--;
+		this.n--;
 		}
 	
 	public boolean contains(Key key) {
@@ -72,23 +74,41 @@ public class OrderedSymbolT <Key extends Comparable<Key>,Value> implements Symbo
 		}
 	
 	public boolean isEmpty() {
-		return this.size==0&&key==null;
+		return this.n==0&&key==null;
 		
 		}
 	
 	public int size() {
-		return this.size;
+		return this.n;
 		}
 	
 	public Key min() {
+		Key min;
+		int y=0;
+		Key []i=this.key;
+		
 		Arrays.sort(key);
-	
-		return this.key[0];
+		
+		while(this.value[y]==null)
+			y++;
+			
+		min=this.key[y];
+		this.key=i;
+		
+		return min;
 		}
 	public Key max() {
+		Key max;
+		Key []i=this.key;
+		int y=this.size-1;
+		
 		Arrays.sort(key);
-	
-		return this.key[this.size-1];
+		while(this.value[y]==null)
+			y--;
+		max=this.key[y];
+		
+		this.key=i;
+		return max;
 		}
 	public Key floor(Key key) {
 		Key f=this.key[0];
@@ -140,7 +160,7 @@ public class OrderedSymbolT <Key extends Comparable<Key>,Value> implements Symbo
 		delete(max());
 		
 		}
-	public int size(Key low,Key high) { //[ 4 99 100  571 1555 9111]
+	public int size(Key low,Key high) { //[ 4 99 100 null 571 1555 9111]
 		
 		if(low.compareTo(high)>0)
 			return 0;
@@ -159,20 +179,21 @@ public class OrderedSymbolT <Key extends Comparable<Key>,Value> implements Symbo
 		}
 	public Iterable<Key>keys(Key low,Key high){
 		
-		
+		Key []i=this.key;
 		int z=this.size;
 		Arrays.sort(key);
-		Arrays.sort(value);
-		this.curr=rank(low);
+		
+		this.curr=rank(low)-1;
 		this.size=rank(high);
 		
 		while(iterator().hasNext()) {
 			
+			if((value[this.curr]==null))curr++;
 			cout.print(iterator().next()+"\n");
 			
 			}	
 		this.size=z;
-		
+		this.key=i;
 		return null;
 	}
 	public Iterator<Key> iterator(){
@@ -187,6 +208,7 @@ public class OrderedSymbolT <Key extends Comparable<Key>,Value> implements Symbo
 				}
 		
 		public Key next(){	
+			
 			return key[curr++];
 				}
 					

@@ -31,14 +31,19 @@ public class TOrderedmain {
 			
 			cout.print("key:");
 			k[y] = cin.nextInt();
-			//cout.print("Value:");
-			Table.put(k[y],file1.nextLine());
+			v[y]=file1.nextLine();
+			Table.put(k[y],v[y]);
 			
 		}
 		
 		cout.print("size:"+Table.size()+"\n");
 		Table.keys();
-		//cout.print(Table.get(Table.max()));
+		
+		cout.println();
+		
+		Table.deleteMax();
+		
+		cout.print(Table.max());
 		cin.close();
 		file1.close();
 	}
