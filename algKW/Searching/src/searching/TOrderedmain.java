@@ -3,9 +3,11 @@ import java.io.PrintStream;
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.math.*;
+import java.security.SecureRandom;
 public class TOrderedmain {
 	
-	
+	static final  SecureRandom rng=new SecureRandom();
     
 	static Scanner cin = new Scanner(System.in);
 
@@ -24,13 +26,17 @@ public class TOrderedmain {
 	    Scanner file1=new Scanner(f);
 		Integer[] k = new Integer[p];
 		String[] v = new String[k.length];
+		long time=0;
+
 		OrderedSymbolT<Integer, String> Table = new OrderedSymbolT<Integer, String>(k, v);
 
 		
 		for (int y = 0; y < k.length; y++) {
 			
 			cout.print("key:");
-			k[y] = cin.nextInt();
+			if(y==123)k[y]=4000;
+			else k[y] = rng.nextInt(10000);
+			
 			v[y]=file1.nextLine();
 			Table.put(k[y],v[y]);
 			
@@ -38,10 +44,16 @@ public class TOrderedmain {
 		
 		cout.print("\n");
 		Table.keys();
+		time=System.nanoTime();
+	
+		cout.println(Table.get(Table.max()));
+	
+	
+	
+		Table.delete(7000);
 		
-		cout.println();
-		
-		cout.println(Table.floor(98));
+		time=(System.nanoTime()-time);//(int)Math.pow(10,9);
+		cout.print(time);
 		
 
 		
