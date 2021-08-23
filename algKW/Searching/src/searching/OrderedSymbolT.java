@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 
 
-public class OrderedSymbolT <Key extends Comparable<Key>,Value> implements SymbolTable<Key,Value>{
+public class OrderedSymbolT <Key extends Comparable<Key>,Value extends Comparable<Value>> implements SymbolTable<Key,Value>{
 	
 	final PrintStream  cout=new PrintStream(System.out);
 	private Key[] key;
@@ -56,6 +56,17 @@ public class OrderedSymbolT <Key extends Comparable<Key>,Value> implements Symbo
 			h++;
 			}
 			return null;
+		}
+	public int getValue(Value value) {
+		
+		int h=0;
+		while(h<this.size) {
+			
+			if(value.compareTo(this.value[h])==0)
+			return h;
+			h++;
+			}
+			return -1;
 		}
 	public void delete(Key key) {
 		int r=0;

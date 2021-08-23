@@ -5,9 +5,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-
 public class Binarysearch {
-
+	  
+	 
 	  public Binarysearch() {
 		  
 		  super();
@@ -37,29 +37,28 @@ public class Binarysearch {
 		  	
 		  	return -1;
 		}
-	  public String binarySearch(String v[],String number,int low,int high,int calls) {// 1 5 9 11 15 22 33 55 57 98
+	  public String binarySearch(String v[],String value,int low,int high,int calls) {// 1 5 9 11 15 22 33 55 57 98
 			
-		  	if(v[(low+high)/2].equals(number)||calls>v.length) {System.out.printf("low=%d high=%d calls %d \n",low,high,calls);
+		  	if(v[(low+high)/2].equals(value)||calls>v.length) {System.out.printf("low=%d high=%d calls %d \n",low,high,calls);
 		  	
-		  	if(calls>v.length) {System.out.printf("number not found");}else{System.out.printf("number founded");};
-		  	return "";
+		  	if(calls>v.length) {System.out.printf("value not found");}else{System.out.printf("value founded");};
+		  	return v[(low+high)/2];
 		  	}
 			
 		  	else {
-		  		if(v[(low+high)/2].compareTo(number)<0) {
+		  		if(v[(low+high)/2].compareTo(value)<0) {
 		  			System.out.printf("low=%d high=%d calls %d \n",low,high,calls);
-		  			return binarySearch(v,number,(high+low)/2,high,calls+1);
+		  			return binarySearch(v,value,(high+low)/2,high,calls+1);
 		  			
 		  		}
-		  		if(v[(low+high)/2].compareTo(number)>0) {
+		  		else {
 		  			
 		  			System.out.printf("low=%d high=%d calls %d \n",low,high,calls);
-		  			return binarySearch(v,number,low,(high+low)/2,calls+1);
+		  			return binarySearch(v,value,low,(high+low)/2,calls+1);
 		  			
 		  		}			
 		  	}
-		  	
-		  	return "";
+		
 		}
 	  
 	  
@@ -110,7 +109,7 @@ public class Binarysearch {
 	  public int NLinesread(BufferedReader f) throws IOException{
 		  int n=0;
 		  try {
-		  f.mark(100);
+		  f.mark(1000000);
 		  String a=f.readLine();
 		  
 		  
