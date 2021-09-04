@@ -1,17 +1,17 @@
 package com.S1.Sone.controller;
-import com.S1.Sone.UserService.UserService;
-import com.S1.Sone.models.Users;
+import java.util.List;
 
-
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.PathVariable;
-import  org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import  org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import com.S1.Sone.UserService.UserService;
+import com.S1.Sone.models.Users;
+import com.S1.Sone.models.Userstime;
 
 @RestController
 public class Control1 {
@@ -45,6 +45,15 @@ public class Control1 {
 				personservice.save_update(users);
 				
 			}
-	
+	@PostMapping(value="userstime/post")
+		private long ins_userTime(@RequestBody Userstime utime) {
+			personservice.save_update(utime);
+			return utime.getId();
+	}
+	@GetMapping(value="usertime/{id}")
+	private Userstime ins_userTime(@PathVariable long id) {
+		
+		return personservice.getbyId(id);
+}
 
 }

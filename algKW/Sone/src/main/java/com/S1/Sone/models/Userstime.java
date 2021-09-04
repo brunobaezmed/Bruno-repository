@@ -18,13 +18,19 @@ public class Userstime implements Utime,Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	private long Id;
+	private long id;
 	@Column
 	private int age;
+	
+	public Userstime(){
+		
+	}
+	public Userstime(long id) {
+		this.id=id;
+	}
 
 	public long getId() {
-		
-		return this.Id;
+		return this.id;
 	}
 	
 	public int getAge() {
@@ -35,7 +41,7 @@ public class Userstime implements Utime,Serializable{
 	public void setAge(int age) {
 		this.age=age;		
 	}
-		
+ 
 }
 
 	

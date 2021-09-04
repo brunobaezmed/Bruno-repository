@@ -6,7 +6,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.S1.Sone.UserTimeService.mariadbCrud;
 import com.S1.Sone.models.Users;
+import com.S1.Sone.models.Userstime;
 import com.S1.Sone.repository.URepository;
 
 
@@ -18,7 +20,9 @@ public class UserService{
 	
 	@Autowired
 	private URepository mariadbcrud;
-
+	
+	@Autowired
+	private mariadbCrud m;
 	public Users getById(long id) {
 		
 		return mariadbcrud.findById(id).get();
@@ -37,13 +41,18 @@ public class UserService{
 	public void save_update(List<Users> users) {
 		mariadbcrud.saveAll(users);
 	}
-	
+	public void save_update(Userstime userstime) {
+		m.save(userstime);
+	}
 	public void delete(long id) {
-	mariadbcrud.deleteById(id);;
+		mariadbcrud.deleteById(id);;
 		
 	}
 	
-	
+	public Userstime getbyId(long id) {
+		
+		return m.findById(id).get();
+	}
 
 
 }
