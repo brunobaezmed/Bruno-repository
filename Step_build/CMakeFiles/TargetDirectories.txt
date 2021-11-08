@@ -1,0 +1,4 @@
+/home/bruno/Documents/c c++/appwind/Step_build/CMakeFiles/rebuild_cache.dir
+/home/bruno/Documents/c c++/appwind/Step_build/CMakeFiles/edit_cache.dir
+/home/bruno/Documents/c c++/appwind/Step_build/CMakeFiles/Lib.dir
+/home/bruno/Documents/c c++/appwind/Step_build/CMakeFiles/appwind.dir
