@@ -1,22 +1,31 @@
 #ifndef tree__
 #define tree__
 #include "SFML/Graphics.hpp"
-class tree
-{
+#include <memory>
+namespace trg{
+constexpr float radius = 50.0f;
+class treeG
+{ 
 
-private:
+public:
      sf::CircleShape circlesimple;
      sf::RectangleShape line;
-     
-public:
-     tree()
-     {
-          tree::line = sf::RectangleShape(sf::Vector2f(20.f, 5.f));
+     sf::Text t;
+     sf::Font f;
+     float x,y;  
+     std::unique_ptr<sf::CircleShape> circle;
+     std::unique_ptr<sf::RectangleShape> li;
+    
+
+     treeG()
+     {    
+         
      };
+     ~treeG(){};
      virtual int DrawCircle(sf::CircleShape &circle);
      virtual int DrawLine(sf::RectangleShape);
      virtual float getcoordinates(float x, float y);
      virtual void setkey(long &key,char &value);
-};
-
+     };
+}
 #endif

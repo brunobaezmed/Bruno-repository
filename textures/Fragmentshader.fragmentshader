@@ -2,16 +2,9 @@
 
 // Ouput data
 out vec3 color;
-uniform float fragLoopDuration;
-uniform float time;
-
-const vec3 fscolor = vec3(1.0f,1.0f,1.0f);
-const vec3 scolor = vec3(0.0f,1.0f,0.0f);
 
 void main()
 {
-	float currtime = mod(time,fragLoopDuration);
-	float currLerp = currtime / fragLoopDuration;
-	// Output color = red 
-	color = mix(fscolor,scolor,currtime);
+	//
+	color = vec3(1,0,0);
 }

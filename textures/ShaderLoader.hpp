@@ -1,6 +1,6 @@
 #ifndef load_shader_
 #define load_shader_
-#include "triangle.hpp"
+#include "textures.hpp"
 #include <iostream>
 #include <string>
 #include <sstream>
@@ -17,4 +17,5 @@ class ShaderLoader{
         
      };
 };
+
 #endif
