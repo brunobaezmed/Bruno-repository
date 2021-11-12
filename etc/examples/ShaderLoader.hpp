@@ -1,4 +1,4 @@
-#ifndef load_shader_
+/*#ifndef load_shader_
 #define load_shader_
 #include "textures.hpp"
 #include <iostream>
@@ -24,4 +24,4 @@ public:
      
 };
 
-#endif
+#endif**/

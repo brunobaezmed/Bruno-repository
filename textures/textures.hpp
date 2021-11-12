@@ -3,17 +3,19 @@
 #include "../libs/GL/glew.h"
 #include "../libs/GL/freeglut.h"
 #include "SFML/Graphics.hpp"
-#include "ShaderLoader.hpp"
-class draw{
+#include "../window.hpp"
+class textures{
 public:
-     draw(){
+GLuint textureID;
+const char* image_path;
+     textures();
 
-     };
-     ~draw(){};
-void VAO(){};
-void triangle(){};
+     ~textures(){};
+     
+      void VAO(){};
+      void triangle(){};
+      GLuint loadTexTr(const char *image_path);
+      void DrawTriangle(GLuint &vertexbuffer,float &time,GLuint &shaderProgram);
+      void VAO2();
 };
-//Vertex Array Object
-
-
 #endif

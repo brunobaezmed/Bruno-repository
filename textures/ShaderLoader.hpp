@@ -1,27 +1,29 @@
-#ifndef load_shader_
-#define load_shader_
+#ifndef LOAD_SHADER_HPP
+#define LOAD_SHADER_HPP
 #include "textures.hpp"
 #include <iostream>
 #include <string>
 #include <sstream>
 #include <fstream>
-#include <vector>
 #include <exception>
-class ShaderLoader{
-public:
-     GLuint ID;
-     ShaderLoader(){
+#include "../libs/GLMS/glm/glm/glm.hpp"
 
-     }
-     ~ShaderLoader(){};
-     void LoadShaders(const char * vertex_file_path,const char *fragment_file_path){
-        
-     };
-     void use();
-     void setBool(const std::string &name,bool value)const;
-     void setInt(const std::string  &name,int value) const;
-     void setFloat(const std::string &name, float value) const;
-     
+class shloader{
+public:
+  
+     GLuint ID;
+      shloader();
+      ~shloader(){};
+     shloader(GLuint ID);
+      void LoadShaders(const char * vertexpath,const char * fragmentpath);
+      void use();
+      void setBool(const std::string &name,bool value);
+      void setInt(const std::string  &name,int value);
+      void setFloat(const std::string &name, float value);
+      void setVec3(const std::string &name,float x,float y ,float z);
+      void setVec3(const std::string &name,glm::vec3 &value);
+      void setMat4(const std::string &name,glm::mat4 &value);
+      GLuint gid();
 };
 
 #endif

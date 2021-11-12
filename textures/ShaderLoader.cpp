@@ -1,11 +1,11 @@
 #include "ShaderLoader.hpp"
-#include "textures.hpp"
-#include "iostream"
-#include "sstream"
-#include "fstream"
-class Shaderloader: public ShaderLoader{
- public:    
-     void Shader(const char *vertexpath,const char *fragmentpath){
+ shloader::shloader(){
+          shloader::ID = ID;
+     };
+
+  void shloader:: LoadShaders(const char * vertexpath,const char * fragmentpath)
+{
+
 
           std::string vertexCode;
           std::string fragmentCode;
@@ -31,63 +31,64 @@ class Shaderloader: public ShaderLoader{
        }catch(std::ifstream::failure e){
             std::cout<<"shader not loaded";
        }
-       compileShader(vertexCode,fragmentCode);
-     };
-     void compileShader(std::string &vertexCode,std::string &fragmentCode){
+      
+
           const char* vShadercode = vertexCode.c_str();
           const char* fShadercode = fragmentCode.c_str();
 
           //compile
-          GLuint vertex,fragment;
+          GLint vertex,fragment,success;
 
           vertex = glCreateShader(GL_VERTEX_SHADER);
           glShaderSource(vertex,1,&vShadercode,NULL);
           glCompileShader(vertex);
-    
+
+          glGetShaderiv(vertex, GL_COMPILE_STATUS, &success);
+          if(!success)std::cout<<"error compiling a shader";
           fragment = glCreateShader(GL_FRAGMENT_SHADER);
           glShaderSource(fragment,1,&fShadercode,NULL);
           glCompileShader(fragment);
 
+          glGetShaderiv(fragment, GL_COMPILE_STATUS, &success);
+          if(!success)std::cout<<"error compiling a shader";
+          
           ID = glCreateProgram();
           glAttachShader(ID,vertex);
           glAttachShader(ID,fragment);
-
           glLinkProgram(ID);
+          glGetProgramiv(ID,GL_LINK_STATUS,&success);
+          if(!success)std::cout<<"error linking a shader";
 
           glDeleteShader(vertex);
           glDeleteShader(fragment);
 
      }
-     void use(){
+  void  shloader:: use(){
           glUseProgram(ID);
      }
-     void setBool(const std::string &name,bool value)const{
+   GLuint shloader:: gid(){return ID;}
+  void shloader:: setBool(const std::string &name,bool value){
           glUniform1i(glGetUniformLocation(ID,name.c_str()),(int)value);
 
      };
-     void setInt(const std::string  &name,int value) const{
+  void shloader:: setInt(const std::string  &name,int value) {
           glUniform1i(glGetUniformLocation(ID,name.c_str()),value);  
      };
-     void setFloat(const std::string &name, float value) const{
+   void shloader::setFloat(const std::string &name, float value) {
           glUniform1f(glGetUniformLocation(ID,name.c_str()),value);  
 
      };
+  void shloader:: setVec3(const std::string &name,float x,float y ,float z){
+          glUniform3f(glGetUniformLocation(ID,name.c_str()),x,y,z);
+  };
+  void shloader:: setVec3(const std::string &name,glm::vec3 &value){
+          glUniform3fv(glGetUniformLocation(ID,name.c_str()),1, &value[0]);
+  };
+
+
+  void shloader::setMat4(const std::string &name,glm::mat4 &value){
+          glUniformMatrix4fv(glGetUniformLocation(ID, name.c_str()), 1, GL_FALSE, &value[0][0]);
+
+  }
     
 
-};
-GLuint Shloader(const char *vertexpath,const char *fragmentpath){
-      sf::Shader s1;
-        s1.loadFromFile(vertexpath,fragmentpath);
-     glm::mat4 projection    = glm::mat4(1.0f);
-        s1.bind(&s1);
-        s1.getNativeHandle();
-        s1.setUniformArray("projection",&projection[0][0],16);
-        return s1.getNativeHandle();
-        
-}
-const unsigned char* imageloader(const char* path){
-     sf::Image i;
-     i.loadFromFile(containerpath);
-     
-     return i.getPixelsPtr();
-}

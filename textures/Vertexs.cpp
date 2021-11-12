@@ -1,6 +1,11 @@
 #include "textures.hpp"
+#include "../libs/GLMS/glm/glm/ext.hpp"
+class vertex_ :  public textures{
 
- GLuint VAO(){
+
+     vertex_(){};
+     ~vertex_(){};
+ GLuint  VAO(){
      
        static const GLfloat g_vertex_buffer_data[] = { 
 		-1.0f, -1.0f, 0.0f,
@@ -14,7 +19,7 @@
 	glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data), g_vertex_buffer_data, GL_STATIC_DRAW);
      return vertexbuffer;
 }
-void DrawTriangle(GLuint &vertexbuffer,float &time,GLuint &shaderProgram){
+void  DrawTriangle(GLuint &vertexbuffer,float &time,GLuint &shaderProgram){
     
      glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
      glClear(GL_COLOR_BUFFER_BIT| GL_COLOR_ARRAY_BUFFER_BINDING);
@@ -117,4 +122,5 @@ GLuint VAO2(){
 	glEnableVertexAttribArray(1);
 
 	return vertexbuffer;
-}
+     }
+};

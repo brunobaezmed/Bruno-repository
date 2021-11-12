@@ -1,4 +1,4 @@
-#include "ShaderLoader.hpp"
+/*#include "ShaderLoader.hpp"
 #include "textures.hpp"
 #include "iostream"
 #include "sstream"
@@ -90,4 +90,4 @@ const unsigned char* imageloader(const char* path){
      i.loadFromFile(containerpath);
      
      return i.getPixelsPtr();
-}
+}*/

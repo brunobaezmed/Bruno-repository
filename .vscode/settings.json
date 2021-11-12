@@ -59,5 +59,6 @@
           "mutex": "cpp",
           "semaphore": "cpp",
           "stop_token": "cpp"
-     }
+     },
+     "C_Cpp.errorSquiggles": "Disabled"
 }

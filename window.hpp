@@ -1,10 +1,7 @@
 #ifndef wind__mer
 #define wind__mer
 #include "SFML/Window.hpp"
-#include "textures/textures.cpp"
 #include "textures/Vertexs.cpp"
-#define STB_IMAGE_IMPLEMENTATION
-#include "libs/stb_image.h"
 #include "iostream"
 #include "SFML/OpenGL.hpp"
 
@@ -17,9 +14,9 @@ public:
      wind(){};
      ~wind(){};
      void start_(){};
-     void run(){};
+     
 };
 const char *vertexpath = "/home/bruno/Projects/appwind/textures/Svertexshader.vertexshader";
-const char *fragmentpath = "/home/bruno/Projects/appwind/textures/Fragmentshader.fragmentshader";
-const char *containerpath = "/home/bruno/Downloads/container.png";
+const char *fragmentpath = "/home/bruno/Projects/appwind/textures/Fragmentshader.fragment";
+const char *containerpath = "/home/bruno/Downloads/container.jpg";
 #endif
