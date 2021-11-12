@@ -12,7 +12,7 @@ const char* image_path;
 
      ~textures(){};
      
-      void VAO(){};
+      void VAO_GL(){};
       void triangle(){};
       GLuint loadTexTr(const char *image_path);
       void DrawTriangle(GLuint &vertexbuffer,float &time,GLuint &shaderProgram);

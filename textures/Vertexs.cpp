@@ -1,26 +1,48 @@
 #include "textures.hpp"
 #include "../libs/GLMS/glm/glm/ext.hpp"
 class vertex_ :  public textures{
-
-
+public:
+GLuint vertexbuffer,vbo;
      vertex_(){};
-     ~vertex_(){};
- GLuint  VAO(){
-     
+     ~vertex_(){
+     glDeleteVertexArrays(1, &vertexbuffer);
+     glDeleteBuffers(1, &vbo);
+
+     };
+
+
+
+         // world space positions of our cubes
+    glm::vec3 cubePositions[10] = {
+        glm::vec3( 0.0f,  0.0f,  0.0f),
+        glm::vec3( 1.0f,  0.0f,  0.0f),
+        glm::vec3(-1.0f,  0.0f,  0.0f),
+        glm::vec3(-3.8f, -2.0f, -12.3f),
+        glm::vec3( 2.4f, -0.4f, -3.5f),
+        glm::vec3(-1.7f,  3.0f, -7.5f),
+        glm::vec3( 1.3f, -2.0f, -2.5f),
+        glm::vec3( 1.5f,  2.0f, -2.5f),
+        glm::vec3( 1.5f,  0.2f, -1.5f),
+        glm::vec3(-1.3f,  1.0f, -1.5f)
+    };//std::vect<glm::vec3> cubes;
+    //cubes.push_back(glm::vec3(x,y,z));
+
+
+
+
+
+ GLuint  VAO_GL(){
+
+     return vertexbuffer;
+}
+void  DrawTriangle(GLuint &vertexbuffer,float &time,GLuint &shaderProgram){
+    
+
        static const GLfloat g_vertex_buffer_data[] = { 
 		-1.0f, -1.0f, 0.0f,
 		 1.0f, -1.0f, 0.0f,
 		 0.0f,  1.0f, 0.0f,
 	};
-
-	GLuint vertexbuffer;
-	glGenBuffers(1, &vertexbuffer);
-	glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data), g_vertex_buffer_data, GL_STATIC_DRAW);
-     return vertexbuffer;
-}
-void  DrawTriangle(GLuint &vertexbuffer,float &time,GLuint &shaderProgram){
-    
      glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
      glClear(GL_COLOR_BUFFER_BIT| GL_COLOR_ARRAY_BUFFER_BINDING);
      glEnableVertexAttribArray(0);
@@ -47,80 +69,85 @@ void  DrawTriangle(GLuint &vertexbuffer,float &time,GLuint &shaderProgram){
 
 
 }
-GLuint VAO2(){
+void VAO2(){
 	
-	   float vertices[] = {
-        -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
-         0.5f, -0.5f, -0.5f,  1.0f, 0.0f,
-         0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-         0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-        -0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
-        -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
+float vertices[] = {
+         -0.5f, -0.5f, -0.5f, 0.0f, 0.0f,
+         0.5f, -0.5f, -0.5f, 1.0f, 0.0f,
+         0.5f, 0.5f, -0.5f, 1.0f, 1.0f,
+         0.5f, 0.5f, -0.5f, 1.0f, 1.0f,
+         -0.5f, 0.5f, -0.5f, 0.0f, 1.0f,
+         -0.5f, -0.5f, -0.5f, 0.0f, 0.0f,
 
-        -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-         0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-         0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
-         0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
-        -0.5f,  0.5f,  0.5f,  0.0f, 1.0f,
-        -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+         -0.5f, -0.5f, 0.5f, 0.0f, 0.0f,
+         0.5f, -0.5f, 0.5f, 1.0f, 0.0f,
+         0.5f, 0.5f, 0.5f, 1.0f, 1.0f,
+         0.5f, 0.5f, 0.5f, 1.0f, 1.0f,
+         -0.5f, 0.5f, 0.5f, 0.0f, 1.0f,
+         -0.5f, -0.5f, 0.5f, 0.0f, 0.0f,
 
-        -0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-        -0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-        -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-        -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-        -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-        -0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+         -0.5f, 0.5f, 0.5f, 1.0f, 0.0f,
+         -0.5f, 0.5f, -0.5f, 1.0f, 1.0f,
+         -0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
+         -0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
+         -0.5f, -0.5f, 0.5f, 0.0f, 0.0f,
+         -0.5f, 0.5f, 0.5f, 1.0f, 0.0f,
 
-         0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-         0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-         0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-         0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-         0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-         0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+         0.5f, 0.5f, 0.5f, 1.0f, 0.0f,
+         0.5f, 0.5f, -0.5f, 1.0f, 1.0f,
+         0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
+         0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
+         0.5f, -0.5f, 0.5f, 0.0f, 0.0f,
+         0.5f, 0.5f, 0.5f, 1.0f, 0.0f,
 
-        -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-         0.5f, -0.5f, -0.5f,  1.0f, 1.0f,
-         0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-         0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-        -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-        -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+         -0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
+         0.5f, -0.5f, -0.5f, 1.0f, 1.0f,
+         0.5f, -0.5f, 0.5f, 1.0f, 0.0f,
+         0.5f, -0.5f, 0.5f, 1.0f, 0.0f,
+         -0.5f, -0.5f, 0.5f, 0.0f, 0.0f,
+         -0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
 
-        -0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
-         0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-         0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-         0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-        -0.5f,  0.5f,  0.5f,  0.0f, 0.0f,
-        -0.5f,  0.5f, -0.5f,  0.0f, 1.0f
-    };
-	GLuint vertexbuffer,vbo;
-	glGenVertexArrays(1,&vertexbuffer);
-	glBindVertexArray(vertexbuffer);
-	glBufferData(GL_ARRAY_BUFFER,sizeof(vertices),vertices,GL_STATIC_DRAW);
+         -0.5f, 0.5f, -0.5f, 0.0f, 1.0f,
+         0.5f, 0.5f, -0.5f, 1.0f, 1.0f,
+         0.5f, 0.5f, 0.5f, 1.0f, 0.0f,
+         0.5f, 0.5f, 0.5f, 1.0f, 0.0f,
+         -0.5f, 0.5f, 0.5f, 0.0f, 0.0f,
+         -0.5f, 0.5f, -0.5f, 0.0f, 1.0f};
 
-	glGenBuffers(1,&vbo);
-	glBindBuffer(GL_ARRAY_BUFFER,vbo);
 
-	glVertexAttribPointer(
-		0,
-		3,
-		GL_FLOAT,
-		GL_FALSE,
-		5*sizeof(float),
-		(void*)0
 
-	);
-	glEnableVertexAttribArray(0);
 
-	glVertexAttribPointer(
-		1,
-		2,
-		GL_FLOAT,
-          GL_FALSE,
-		5 * sizeof(float),
-		(void*)(3 * sizeof(float)));
 
-	glEnableVertexAttribArray(1);
 
-	return vertexbuffer;
+   
+     glGenVertexArrays(1, &vertexbuffer);
+     glGenBuffers(1, &vbo);
+     glBindVertexArray(vertexbuffer);
+     glBindBuffer(GL_ARRAY_BUFFER, vbo);
+
+     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+     glVertexAttribPointer(
+         0,
+         3,
+         GL_FLOAT,
+         GL_FALSE,
+         5 * sizeof(float),
+         (void *)0
+
+     );
+     glEnableVertexAttribArray(0);
+
+     glVertexAttribPointer(
+         1,
+         2,
+         GL_FLOAT,
+         GL_FALSE,
+         5 * sizeof(float),
+         (void *)(3 * sizeof(float)));
+
+     glEnableVertexAttribArray(1);
+
+
      }
 };

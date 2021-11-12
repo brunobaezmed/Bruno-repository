@@ -19,4 +19,7 @@ public:
 const char *vertexpath = "/home/bruno/Projects/appwind/textures/Svertexshader.vertexshader";
 const char *fragmentpath = "/home/bruno/Projects/appwind/textures/Fragmentshader.fragment";
 const char *containerpath = "/home/bruno/Downloads/container.jpg";
+const char *texturpath = "/home/bruno/Downloads/textur.png";
+const char *cube = "/home/bruno/Downloads/cube.png";
+
 #endif
