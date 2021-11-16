@@ -8,25 +8,25 @@ class camera{
 public:
 	camera();
 	~camera(){};
-	
-	glm::mat4 ViewMatrix;
-	glm::mat4 ProjMatrix;
-	glm::vec3 Camera_Position = glm::vec3(0.0f,0.0f,3.0f);
-	glm::vec3 Camera_front = glm::vec3(0.0,0.0f,-1.0f);
-	glm::vec3 camera_up = glm::vec3(0.0,1.0f,0.0f);
-	float horizontaangle;
-	float verticalangle;
-	float initialFoV;
-	sf::Time time;
+private:
 
-	double xpos ,ypos;
-	double lastime;
+	sf::Time time;
+	glm::mat4 ProjMatrix ;
+	glm::mat4 ViewMatrix ;
+	
+	glm::vec3 Camera_Position ;
+	glm::vec3 Camera_front ;
+	glm::vec3 camera_up ;
+	float initialFoV;
+	float lastime,deltatime,currentime;
+	const float FoV = 45.0f;
 	const float speed = 3.0f;
 	const float mousespeed = 0.005f;
-	
+public:	
 	glm::mat4 getViewMatrix();
 	glm::mat4 getProjection_Matrix();
 	void Init_Camera();
+	
 
 
 

@@ -4,17 +4,21 @@
 #include "../libs/GL/freeglut.h"
 #include "SFML/Graphics.hpp"
 #include "../window.hpp"
+#include "ShaderLoader.hpp"
+#include "vector"
+
 class textures{
 public:
 GLuint textureID;
+shloader s;
 const char* image_path;
      textures();
-
+    
      ~textures(){};
-     
       void VAO_GL(){};
       void triangle(){};
       GLuint loadTexTr(const char *image_path);
+      void draw(shloader &s);
       void DrawTriangle(GLuint &vertexbuffer,float &time,GLuint &shaderProgram);
       void VAO2();
 };

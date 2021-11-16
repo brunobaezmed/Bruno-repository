@@ -23,7 +23,6 @@ public:
       void setVec3(const std::string &name,float x,float y ,float z);
       void setVec3(const std::string &name,glm::vec3 &value);
       void setMat4(const std::string &name,glm::mat4 &value);
-      GLuint gid();
 };
 
 #endif

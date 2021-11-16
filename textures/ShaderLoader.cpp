@@ -63,10 +63,10 @@
           glDeleteShader(fragment);
 
      }
+     //use programy
   void  shloader:: use(){
           glUseProgram(ID);
      }
-   GLuint shloader:: gid(){return ID;}
   void shloader:: setBool(const std::string &name,bool value){
           glUniform1i(glGetUniformLocation(ID,name.c_str()),(int)value);
 
